@@ -12,19 +12,22 @@ spec:
       labels:
         app: myrealapp
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+
       containers:
         - name: myrealapp
-          image: ghcr.io/lulzimv/myrealapp:latest 
-      imagePullSecrets:
-	- name: ghcr-secret
+          image: ghcr.io/lulzimv/myrealapp:latest
           ports:
             - containerPort: 5000
+
           readinessProbe:
             httpGet:
               path: /health
               port: 5000
             initialDelaySeconds: 5
             periodSeconds: 10
+
           livenessProbe:
             httpGet:
               path: /health
