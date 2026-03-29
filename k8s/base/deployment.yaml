@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myrealapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myrealapp
+  template:
+    metadata:
+      labels:
+        app: myrealapp
+    spec:
+      containers:
+        - name: myrealapp
+          image: ghcr.io/lulzimv/myrealapp:latest
+          ports:
+            - containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 15

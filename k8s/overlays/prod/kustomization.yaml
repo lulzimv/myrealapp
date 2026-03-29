@@ -1,0 +1,13 @@
+namespace: prod
+
+resources:
+  - ../../base
+
+patches:
+  - target:
+      kind: Deployment
+      name: myrealapp
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 3
