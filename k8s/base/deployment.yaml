@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: myrealapp
-          image: ghcr.io/lulzimv/myrealapp/myrealapp:latest 
+          image: ghcr.io/lulzimv/myrealapp:latest 
           ports:
             - containerPort: 5000
           readinessProbe:
